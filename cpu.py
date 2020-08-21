@@ -16,6 +16,15 @@ CMP = 0b10100111
 JMP = 0b01010100
 JEQ = 0b01010101
 JNE = 0b01010110
+AND = 0b10100000
+OR = 0b10101010
+XOR = 0b10101011
+NOT = 0b01101001
+SHL = 0b10101100
+SHR = 0b10101101
+MOD = 0b10100100
+
+
 class CPU:
     """Main CPU class."""
 
@@ -90,26 +99,26 @@ class CPU:
                 self.greater = 1
             elif self.register[reg_a] == self.register[reg_b]:
                 self.equal = 1
-
-        elif op == "AND":
+#STRETCH~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        elif op == AND:
              self.register[reg_a] &= self.register[reg_b]
         
-        elif op == "OR":
+        elif op == OR:
              self.register[reg_a] |= self.register[reg_b]
         
-        elif op == "XOR":
+        elif op == XOR:
              self.register[reg_a] ^= self.register[reg_b]
         
-        elif op == "NOT":
+        elif op == NOT:
              self.register[reg_a] =~ self.register[reg_a]
         
-        elif op == "SHL":
+        elif op == SHL:
              self.register[reg_a] <<= self.register[reg_b]
         
-        elif op == "SHR":
+        elif op == SHR:
              self.register[reg_a] >>= self.register[reg_b]
         
-        elif op == "MOD":
+        elif op == MOD:
              self.register[reg_a] %= self.register[reg_b]     
 
         else:
@@ -219,32 +228,33 @@ class CPU:
                 self.alu(cmd, operand_a, operand_b)
                 self.PC +=3       
 
-            elif cmd == "AND":
-                self.alu("AND", operand_a, operand_b)
+#STRETCH~~~~~~~~~~~~~~~
+            elif cmd == AND:
+                self.alu(cmd, operand_a, operand_b)
                 self.PC += 3  
 
-            elif cmd == "OR":
-                self.alu("OR", operand_a, operand_b)
+            elif cmd == OR:
+                self.alu(cmd, operand_a, operand_b)
                 self.PC += 3 
 
-            elif cmd == "XOR":
-                self.alu("XOR", operand_a, operand_b)
+            elif cmd == XOR:
+                self.alu(cmd, operand_a, operand_b)
                 self.PC += 3 
 
-            elif cmd == "NOT":
-                self.alu("NOT", operand_a, operand_b)
+            elif cmd == NOT:
+                self.alu(cmd, operand_a, operand_b)
                 self.PC += 2
             
-            elif cmd == "SHL":
-                self.alu("SHL", operand_a, operand_b)
+            elif cmd == SHL:
+                self.alu(cmd, operand_a, operand_b)
                 self.PC += 3
 
-            elif cmd == "SHR":
-                self.alu("SHR", operand_a, operand_b)
+            elif cmd == SHR:
+                self.alu(cmd, operand_a, operand_b)
                 self.pc += 3
             
-            elif cmd == "MOD":
-                self.alu("MOD", operand_a, operand_b)
+            elif cmd == MOD:
+                self.alu(cmd, operand_a, operand_b)
                 self.PC += 3                            
             else:  
                 print(f'unknown cmd: {cmd}')
